@@ -1,2 +1,4 @@
 # OD-Chat
-Depricated Machine Learning Model for Okayama Denim
+This rep is a depricated machine learning model for Okayama Denim.
+Originally, the model was supposed to replace the chat in Okayama Denim's website to fully automate guiding the user, but the introduction of Shopify Sidekick stopped production. Many of the files and assets used in this project were never finished, but the html code for 'Contact Us' would be used for this page in the website: https://www.okayamadenim.com/pages/contact-us
+- main
