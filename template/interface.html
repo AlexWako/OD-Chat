@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<head>
+    <title>OD ChatBot</title>
+    <style>
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+
+        @font-face {
+            font-family: 'Mulish-Regular';
+            font-style: normal;
+            font-display: swap;
+            font-weight: 400;
+            src: url('/Users/alexwako/Desktop/OkayamaDenim/ODchat/webServer/public/assets/Mulish-Regular.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Mulish-Light';
+            font-style: normal;
+            font-display: swap;
+            font-weight: 100;
+            src: url('/Users/alexwako/Desktop/OkayamaDenim/ODchat/webServer/public/assets/Mulish-ExtraLight.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Mulish-Bold';
+            font-style: normal;
+            font-display: swap;
+            font-weight: 700;
+            src: url('/Users/alexwako/Desktop/OkayamaDenim/ODchat/webServer/public/assets/Mulish-Regular.woff') format('woff');
+        }
+
+        .chat-container {
+            position: relative;
+            width: 372px;
+            height: 600px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 2.5%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-banner {
+            height: 15%;
+            font-family: 'Mulish-Light', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message-seperator {
+            height: 2.5%;
+            background-color: rgb(255, 255, 255);
+        }
+        .chat-message-container {
+            height: 72.5%;
+            flex-direction: column;
+            font-family: 'Mulish-Bold', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: rgb(255, 255, 255);
+        }
+        .chat-user-container {
+            height: 10%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            border-top: 1px groove rgba(0, 0, 0, 0.1);
+            color: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: row;
+        }
+    
+        .chat-header {
+            height: 80%;
+            background-color: rgb(208, 2, 27);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chat-banner-seperator {
+            height: 20%;
+            background-color: rgb(187, 2, 24);
+        }
+        .header-icon {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        .heading1 {
+            position: relative;
+            height: 100%;
+            margin: 0;
+            font-size: 44px;
+            letter-spacing: -0.24px;
+            color:rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .option-content {
+            position: relative;
+            display: inline-block;
+            font-family: 'Mulish-Bold', sans-serif;
+            font-size: inherit;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+        }
+        .option-bubble {
+            display: inline-block;
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            margin-bottom: 10px;
+            overflow-wrap: break-word;
+            color: rgb(187, 2, 24);
+            background-color: transparent;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .chat-container-row {
+            display: inline-block;
+            width: 95%;
+            padding-left: 9.3px;
+            padding-right: 9.3px;
+            font-size: 13px;
+            background-color: transparent;
+        }
+        .chat-bubble {
+            display: inline-block;
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            overflow-wrap: break-word;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .user-message {
+            float: right;
+            background-color: rgb(187, 2, 24);
+            color: rgb(255, 255, 255);
+        }
+        .bot-message {
+            float: left;
+            background-color: rgb(240, 242, 247);
+            color: rgb(0, 0, 0);
+        }
+        .chat-user-input {
+            width: 80%;
+            background-color: transparent;
+            border: none;
+            overflow-y: auto;
+        }
+        .send-button-container {
+            width: 20%;
+            background-color: transparent;
+            border: none;
+        }
+        .send-button {
+            width: 50%;
+            height: 50%;
+
+        }
+        .send-button-icon {
+            width: 50%;
+            height: 50%;
+        }
+
+        .seperate1 {    
+            padding: 0px 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-banner">
+            <div class="chat-header">
+                <p class="heading1">
+                    <span class="seperate1">
+                        <img src="/Users/alexwako/Desktop/OkayamaDenim/ODchat/webServer/public/assets/icon.jpeg" class="header-icon">
+                    </span>
+                    OD ChatBot
+                </p>
+            </div>
+            <div class="chat-banner-seperator">
+            </div>
+        </div>
+        <div class="chat-message-seperator"></div>
+        <div class="chat-message-container" id="chatMessageContainer">
+            <div id="initialMessageBot">
+                <div class="chat-container-row">
+                    <div class="chat-bubble bot-message">Hi there!</div>
+                </div>
+                <div class="chat-container-row">
+                    <div class="chat-bubble bot-message">I will be your Okayama Denim virtual assistant. I am not human, so I am available 24/7. Choose a dialogue option to recieve assistance.</div>
+                </div>
+            </div>
+            <div class="option-content" id="optionButton">
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="1">Orders</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="2">Shipping</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="3">Product Availability</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="4">Product Size</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="5">Indigo Points</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="6">Exchange/Return</button>
+                </div>
+                <div class="chat-container-row">
+                    <button class="option-bubble" data-option="7">Others</button>
+                </div>
+            </div>
+            <div id="chatLog"></div>
+        </div>
+        <div class="chat-user-container">
+            <input type="text" id="userInput" placeholder="Enter your message..." class="chat-user-input">
+            <button onclick="sendMessage()" class="send-button-container">
+                <svg class="send-button">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" class="send-button-icon"></path>
+                </svg>
+            </button>
+        </div>
+    </div> 
+
+    <script>
+        const optionButtons = document.querySelectorAll('.option-bubble');
+        var chatMessageContainer = document.getElementById('chatMessageContainer');
+        let chatOpen = false
+
+        optionButtons.forEach(button => {
+            button.addEventListener('click', onOptionClicked);
+        });
+
+        userInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function onOptionClicked(event) {
+            const button = event.target;
+            const option = button.dataset.option;
+
+            if (option === '1') {
+            response = 'What would you like to know for orders?';
+            } else if (option === '2') {
+            response = 'What would you like to know for shipping?';
+            } else if (option === '3') {
+            response = 'What product would you like to check the avilability for? Please enter the full product name or product code.';
+            } else if (option === '4') {
+            response = 'What product would you like to check the size for? Please enter the full product name or product code.';
+            } else if (option === '5') {
+            response = 'What would you like to know about your Indigo Points? Please understand that the points will reflect 14 days after purchase.';
+            } else if (option === '6') {
+            response = 'What would you like to know for exchange/return?';
+            } else if (option === '7') {
+            response = 'I apologize for the inconvenience. Any answers for other topics are beyond my capability. If you still would like to have the question answered, please navigate to the <a href="https://www.okayamadenim.com/pages/contact-us" target="_blank">contact page</a>. Thank you.';
+            }
+
+            displayMessage(response, 'bot-message')
+            chatOpen = true;
+        }
+        function sendMessage() {
+            var userInput = document.getElementById('userInput');
+            var userMessage = userInput.value;
+
+            if (userMessage.trim() !== '') {
+                displayMessage(userMessage, 'user-message');
+                respondToUser(userMessage);
+                userInput.value = '';
+            }
+        }
+        function respondToUser(message) {
+            if (chatOpen) {
+                var botResponse = 'I received your message: ';
+                displayMessage(botResponse, 'bot-message');
+            }
+        }
+        function displayMessage(message, className) {
+            var chatLog = document.getElementById('chatLog');
+
+            var messageElement = document.createElement('div');
+            messageElement.classList.add('chat-bubble');
+            messageElement.classList.add(className);
+            messageElement.innerHTML = message;
+
+            var messageBlock = document.createElement('div');
+            messageBlock.classList.add('chat-container-row');
+
+            messageBlock.appendChild(messageElement);
+            chatLog.appendChild(messageBlock);
+
+            scrollToBottom()
+        }
+        function scrollToBottom() {
+            chatMessageContainer.scrollTop = chatMessageContainer.scrollHeight;
+        }
+    </script>
+</body>

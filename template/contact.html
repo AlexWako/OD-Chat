@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .black-highlight {
+            color: black;
+        }
+
+        .small-container,
+        .large-container {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 10px;
+            display: none;
+            flex-direction: column;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            .small-container {
+                display: flex;
+            }
+            .main-container {
+                width: 100%;
+                height: 55%;
+                margin-top: 2.5%;
+                font-family: 'Cabin';
+            }
+            .contact-container {
+                width: 100%;
+                height: 30%;
+                margin-top: 5%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .message-container {
+                width: 100%;
+                height: 100%;
+            }
+
+            .label-container {
+                width: 100%;
+                margin-bottom: 2px;
+            }
+            .mini-text-container {
+                display: inline-block;
+                width: 40%;
+                height: 25px;
+                margin-left: 5%;
+                font-family: 'HelveticaNeue-Light';
+                vertical-align: text-top;
+                border: solid rgb(204, 204, 204);
+            }
+            .text-container {
+                display: inline-block;
+                width: 100%;
+                height: 25px;
+                font-family: 'HelveticaNeue-Light';
+                vertical-align: text-top;
+                border: solid rgb(204, 204, 204);
+            }
+            .text-container-2 {
+                display: inline-block;
+                width: 100%;
+                height: 225px;
+                resize: none;
+                border: 1px solid rgb(204, 204, 204);
+            }
+            .drop-down {
+                display: inline-block;
+            }
+            .submit-container {
+                width: 100%;
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+            }
+            .submit-button {
+                width: 35%;
+                height: 30px;
+                font-family: 'Cabin';
+                border: 0.25px solid rgb(0, 0, 0);
+                color: rgb(255, 255, 255);
+                background-color: rgb(208, 2, 27);
+            }
+
+            .contact-banner {
+                width: 50%;
+                height: 5%;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+            .contact-text {
+                width: 50%;
+                height: auto;
+                margin: 5px 0;
+            }
+            .contact-text a {
+                color: rgb(3, 161, 150);
+                border-bottom: none;
+                text-decoration: none;
+            }
+
+            .space1 {
+                width: 100%;
+                height: 12.5px;
+            }
+            .text-space {
+                font-size: 31px;
+                line-height: 2;
+                margin: 0;
+            }
+        }
+
+        @media only screen and (min-width: 769px) {
+                
+            .large-container {
+                display: flex;
+            }
+            .main-container {
+                width: 100%;
+                height: 70%;
+                margin-top: 2.5%;
+                font-family: 'Cabin';
+                display: flex;
+                flex-direction: row;
+            }
+
+            .message-container {
+                width: 42.5%;
+                height: 100%;
+                margin-left: 5%;
+                margin-right: 2.5%;
+            }
+            .contact-container {
+                width: 42.5%;
+                height: 100%;
+                margin-left: 2.5%;
+                margin-right: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            .mini-label-container {
+                width: 100%;
+                margin-right: 5%;
+                margin-bottom: 2px;
+            }
+            .label-container {
+                width: 100%;
+                margin-bottom: 2px;
+            }
+            .text-container {
+                display: inline-block;
+                width: 100%;
+                height: 25px;
+                font-family: 'HelveticaNeue-Light';
+                vertical-align: text-top;
+                border: solid rgb(204, 204, 204);
+            }
+            .text-container-2 {
+                display: inline-block;
+                width: 100%;
+                height: 225px;
+                resize: none;
+                border: 1px solid rgb(204, 204, 204);
+            }
+            .drop-down {
+                display: inline-block;
+            }
+            .submit-container {
+                width: 100%;
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+            }
+            .submit-button {
+                width: 35%;
+                height: 30px;
+                font-family: 'Cabin';
+                border: 0.25px solid rgb(0, 0, 0);
+                color: rgb(255, 255, 255);
+                background-color: rgb(208, 2, 27);
+            }
+
+            .contact-banner {
+                width: 50%;
+                height: 5%;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+            .contact-text {
+                width: 50%;
+                height: auto;
+                margin: 5px 0;
+            }
+            .contact-text a {
+                color: rgb(3, 161, 150);
+                border-bottom: none;
+                text-decoration: none;
+            }
+
+            .space1 {
+                width: 100%;
+                height: 12.5px;
+            }
+            .text-space {
+                font-size: 31px;
+                line-height: 2;
+                margin: 0;
+            }
+        }   
+    </style>
+</head>
+<body>
+    <div class="small-container">
+        <div class="main-container">
+            <div class = "message-container">
+                <label class = "label-container"><strong>Your Name *</strong></label>
+                <input type="text" id="sName" class="text-container">
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Your Email *</strong></label>
+                <input type="text" id="sEmail" class="text-container">
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Subject</strong></label>
+                <select class="label-container" id="sChoice" onchange="sHandleSelection()">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Availability">Availability</option>
+                    <option value="Order Status">Order Status</option>
+                    <option value="Sizing">Sizing</option>
+                    <option value="Shipping">Shipping</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Message *</strong></label>
+                <textarea id="sMessage" class="text-container-2"></textarea>
+                <div id="sSubmit" class="submit-container">
+                    <button onclick="sSendWebhook()" class="submit-button">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class = "contact-container">
+            <div class="contact-banner">Email:</div>
+            <div class="contact-text">
+                <a href="mailto::info@okayamadenim.com">info@okayamadenim.com</a>
+            </div>
+            <div class="contact-banner">Socials:</div>
+            <div class="contact-text">
+                <a href="https://www.instagram.com/okayamadenim/" target="_blank">Instagram</a>
+                <span class="black-highlight"> | </span>
+                <a href="https://www.facebook.com/OkayamaDenim/" target="_blank">Facebook</a>
+                <span class="black-highlight"> | </span> 
+                <a href="https://www.youtube.com/channel/UCmxAVORFeUPFKHN23M_aphA" target="_blank">Youtube</a>
+            </div>
+            <div class="contact-banner">Address:</div>
+            <div class="contact-text">
+                OKAYAMA DENIM<br>
+                est #403<br>
+                2-27-2 Higashi <br>
+                Shibuya-ku, Tokyo<br>
+                Japan 150-0011
+            </div>
+        </div>
+    </div>
+    <div class = "large-container">
+        <div class="main-container">
+            <div class = "message-container">
+                <label class = "label-container"><strong>Your Name *</strong></label>
+                <input type="text" id="lName" class="text-container">
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Your Email *</strong></label>
+                <input type="text" id="lEmail" class="text-container">
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Subject</strong></label>
+                <select class="label-container" id="lChoice" onchange="lHandleSelection()">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Availability">Availability</option>
+                    <option value="Order Status">Order Status</option>
+                    <option value="Sizing">Sizing</option>
+                    <option value="Shipping">Shipping</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div class = "space1"></div>
+                <label class = "label-container"><strong>Message *</strong></label>
+                <textarea id="lMessage" class="text-container-2"></textarea>
+                <div id="lSubmit" class="submit-container">
+                    <button onclick="lSendWebhook()" class="submit-button">Submit</button>
+                </div>
+            </div>
+            <div class = "contact-container">
+                <div class="contact-banner">Email:</div>
+                <div class="contact-text">
+                    <a href="mailto::info@okayamadenim.com">info@okayamadenim.com</a>
+                </div>
+                <div class="contact-banner">Socials:</div>
+                <div class="contact-text">
+                    <a href="https://www.instagram.com/okayamadenim/" target="_blank">Instagram</a>
+                    <span class="black-highlight"> | </span>
+                    <a href="https://www.facebook.com/OkayamaDenim/" target="_blank">Facebook</a>
+                    <span class="black-highlight"> | </span> 
+                    <a href="https://www.youtube.com/channel/UCmxAVORFeUPFKHN23M_aphA" target="_blank">Youtube</a>
+                </div>
+                <div class="contact-banner">Address:</div>
+                <div class="contact-text">
+                    OKAYAMA DENIM<br>
+                    est #403<br>
+                    2-27-2 Higashi <br>
+                    Shibuya-ku, Tokyo<br>
+                    Japan 150-0011
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sHandleSelection() {
+            var container = document.getElementById("sChoice");
+            var choice = container.value;
+
+            var previousContainer = document.getElementById('temp');
+            if (previousContainer) {
+                previousContainer.remove()
+            }
+
+            if (choice=="Availability" || choice=="Sizing") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var miniContainerLabel = document.createElement('div');
+                miniContainerLabel.style.display = 'flex';
+                miniContainerLabel.style.flexDirection = 'row';
+
+                var miniContainerText = document.createElement('div');
+                miniContainerText.style.display = 'flex';
+                miniContainerText.style.flexDirection = 'row';
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+
+                var newLabel2 = document.createElement('label');
+                newLabel2.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Product Name";
+
+                var boldHeader2 = document.createElement('strong');
+                boldHeader2.innerHTML = "Size";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "sOption");
+                newTextBox.setAttribute("class", "mini-label-container");        
+                
+                var newTextBox2 = document.createElement('input');
+                newTextBox2.setAttribute("type", "text");
+                newTextBox2.setAttribute("id", "sOption2");
+                newTextBox2.setAttribute("class", "mini-label-container");
+
+                newLabel.appendChild(boldHeader);
+                newLabel2.appendChild(boldHeader2);
+
+                miniContainerLabel.appendChild(newLabel);
+                miniContainerLabel.appendChild(newLabel2);
+
+                miniContainerText.appendChild(newTextBox);
+                miniContainerText.appendChild(newTextBox2);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(miniContainerLabel);
+                newContainer.appendChild(miniContainerText);
+
+                container.insertAdjacentElement('afterend', newContainer);
+
+            } else if (choice=="Order Status") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Order Number";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "sOption");
+                newTextBox.setAttribute("class", "text-container");                
+                
+                newLabel.appendChild(boldHeader);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(newLabel);
+                newContainer.appendChild(newTextBox);
+
+                container.insertAdjacentElement('afterend', newContainer);
+            } else if (choice=="Shipping") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var miniContainerLabel = document.createElement('div');
+                miniContainerLabel.style.display = 'flex';
+                miniContainerLabel.style.flexDirection = 'row';
+
+                var miniContainerText = document.createElement('div');
+                miniContainerText.style.display = 'flex';
+                miniContainerText.style.flexDirection = 'row';
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+
+                var newLabel2 = document.createElement('label');
+                newLabel2.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Order Number";
+
+                var boldHeader2 = document.createElement('strong');
+                boldHeader2.innerHTML = "Country";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "sOption");
+                newTextBox.setAttribute("class", "mini-label-container");        
+                
+                var newTextBox2 = document.createElement('input');
+                newTextBox2.setAttribute("type", "text");
+                newTextBox2.setAttribute("id", "sOption2");
+                newTextBox2.setAttribute("class", "mini-label-container");
+
+                newLabel.appendChild(boldHeader);
+                newLabel2.appendChild(boldHeader2);
+
+                miniContainerLabel.appendChild(newLabel);
+                miniContainerLabel.appendChild(newLabel2);
+
+                miniContainerText.appendChild(newTextBox);
+                miniContainerText.appendChild(newTextBox2);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(miniContainerLabel);
+                newContainer.appendChild(miniContainerText);
+
+                container.insertAdjacentElement('afterend', newContainer);
+            } else {
+                return
+            };
+        };
+
+        function lHandleSelection() {
+            var container = document.getElementById("lChoice");
+            var choice = container.value;
+
+            var previousContainer = document.getElementById('temp');
+            if (previousContainer) {
+                previousContainer.remove()
+            }
+
+            if (choice=="Availability" || choice=="Sizing") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var miniContainerLabel = document.createElement('div');
+                miniContainerLabel.style.display = 'flex';
+                miniContainerLabel.style.flexDirection = 'row';
+
+                var miniContainerText = document.createElement('div');
+                miniContainerText.style.display = 'flex';
+                miniContainerText.style.flexDirection = 'row';
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+
+                var newLabel2 = document.createElement('label');
+                newLabel2.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Product Name";
+
+                var boldHeader2 = document.createElement('strong');
+                boldHeader2.innerHTML = "Size";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "lOption");
+                newTextBox.setAttribute("class", "mini-label-container");        
+                
+                var newTextBox2 = document.createElement('input');
+                newTextBox2.setAttribute("type", "text");
+                newTextBox2.setAttribute("id", "lOption2");
+                newTextBox2.setAttribute("class", "mini-label-container");
+
+                newLabel.appendChild(boldHeader);
+                newLabel2.appendChild(boldHeader2);
+
+                miniContainerLabel.appendChild(newLabel);
+                miniContainerLabel.appendChild(newLabel2);
+
+                miniContainerText.appendChild(newTextBox);
+                miniContainerText.appendChild(newTextBox2);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(miniContainerLabel);
+                newContainer.appendChild(miniContainerText);
+
+                container.insertAdjacentElement('afterend', newContainer);
+
+            } else if (choice=="Order Status") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Order Number";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "lOption");
+                newTextBox.setAttribute("class", "text-container");                
+                
+                newLabel.appendChild(boldHeader);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(newLabel);
+                newContainer.appendChild(newTextBox);
+
+                container.insertAdjacentElement('afterend', newContainer);
+            } else if (choice=="Shipping") {
+                var newContainer = document.createElement('div');
+                newContainer.setAttribute("id", "temp");
+
+                var miniContainerLabel = document.createElement('div');
+                miniContainerLabel.style.display = 'flex';
+                miniContainerLabel.style.flexDirection = 'row';
+
+                var miniContainerText = document.createElement('div');
+                miniContainerText.style.display = 'flex';
+                miniContainerText.style.flexDirection = 'row';
+
+                var newSpace = document.createElement('div');
+                newSpace.classList.add('space1');
+                
+                var newLabel = document.createElement('label');
+                newLabel.classList.add('label-container');
+
+                var newLabel2 = document.createElement('label');
+                newLabel2.classList.add('label-container');
+                
+                var boldHeader = document.createElement('strong');
+                boldHeader.innerHTML = "Order Number";
+
+                var boldHeader2 = document.createElement('strong');
+                boldHeader2.innerHTML = "Country";
+
+                var newTextBox = document.createElement('input');
+                newTextBox.setAttribute("type", "text");
+                newTextBox.setAttribute("id", "lOption");
+                newTextBox.setAttribute("class", "mini-label-container");        
+                
+                var newTextBox2 = document.createElement('input');
+                newTextBox2.setAttribute("type", "text");
+                newTextBox2.setAttribute("id", "lOption2");
+                newTextBox2.setAttribute("class", "mini-label-container");
+
+                newLabel.appendChild(boldHeader);
+                newLabel2.appendChild(boldHeader2);
+
+                miniContainerLabel.appendChild(newLabel);
+                miniContainerLabel.appendChild(newLabel2);
+
+                miniContainerText.appendChild(newTextBox);
+                miniContainerText.appendChild(newTextBox2);
+
+                newContainer.appendChild(newSpace);
+                newContainer.appendChild(miniContainerLabel);
+                newContainer.appendChild(miniContainerText);
+
+                container.insertAdjacentElement('afterend', newContainer);
+            } else {
+                return
+            };
+        };
+
+        function sSendWebhook() {
+            var previousPopUp = document.getElementById('popUp');
+            if (previousPopUp) {
+                previousPopUp.remove()
+            }
+
+            var userName = document.getElementById("sName").value;
+            var userEmail = document.getElementById("sEmail").value;
+            var userSubject = document.getElementById("sChoice");
+            var userChoice1 = document.getElementById("sOption");
+            var userChoice2 = document.getElementById("sOption2");
+            var userMessage = document.getElementById("sMessage").value;
+
+            if (userName && userEmail && userMessage) {
+
+                if (userSubject && userChoice1 && userChoice2) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data1: userChoice1.value,
+                    Data2: userChoice2.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject && userChoice1) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data1: userChoice1.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject && userChoice2) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data2: userChoice2.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Message: userMessage
+                    };
+                } else {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: null,
+                    Message: userMessage
+                    };
+                }
+            
+                fetch("https://squtelivunjriprhf2yc2qpm5y0iieef.lambda-url.ap-northeast-1.on.aws/", {
+                    mode: "no-cors",
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                    })
+                    .catch(error => {
+                        console.error('Error sending webhook:', error);
+                        var popup = document.getElementById("sSubmit")
+                
+                        var popUpMessage = document.createElement('div');
+                        popUpMessage.setAttribute('id', 'popUp');
+                        popUpMessage.style.paddingLeft = "10px";
+                        popUpMessage.innerHTML = "Message failed to send";
+
+                        popup.appendChild(popUpMessage);
+                    })
+
+                var popup = document.getElementById("sSubmit")
+                
+                var popUpMessage = document.createElement('div');
+                popUpMessage.setAttribute('id', 'popUp');
+                popUpMessage.style.paddingLeft = "10px";
+                popUpMessage.innerHTML = "Thank you! We will get back to your inquiry as soon as possible.";
+
+                popup.appendChild(popUpMessage);
+                
+            } else {
+                sSendError()
+            };
+            };
+
+        function lSendWebhook() {
+            var previousPopUp = document.getElementById('popUp');
+            if (previousPopUp) {
+                previousPopUp.remove()
+            }
+
+            var userName = document.getElementById("lName").value;
+            var userEmail = document.getElementById("lEmail").value;
+            var userSubject = document.getElementById("lChoice");
+            var userChoice1 = document.getElementById("lOption");
+            var userChoice2 = document.getElementById("lOption2");
+            var userMessage = document.getElementById("lMessage").value;
+
+            if (userName && userEmail && userMessage) {
+
+                if (userSubject && userChoice1 && userChoice2) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data1: userChoice1.value,
+                    Data2: userChoice2.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject && userChoice1) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data1: userChoice1.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject && userChoice2) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Data2: userChoice2.value,
+                    Message: userMessage
+                    };
+                } else if (userSubject) {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: userSubject.value,
+                    Message: userMessage
+                    };
+                } else {
+                    var data = {
+                    Name: userName,
+                    Email: userEmail,
+                    Subject: null,
+                    Message: userMessage
+                    };
+                };
+                
+                fetch("https://squtelivunjriprhf2yc2qpm5y0iieef.lambda-url.ap-northeast-1.on.aws/", {
+                    mode: "no-cors",
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                    })
+                    .catch(error => {
+                        console.error('Error sending webhook:', error);
+                        var popup = document.getElementById("lSubmit")
+                
+                        var popUpMessage = document.createElement('div');
+                        popUpMessage.setAttribute('id', 'popUp')
+                        popUpMessage.style.paddingLeft = "10px";
+                        popUpMessage.innerHTML = "Message failed to send";
+
+                        popup.appendChild(popUpMessage);
+                    })
+
+                var popup = document.getElementById("lSubmit")
+                
+                var popUpMessage = document.createElement('div');
+                popUpMessage.setAttribute('id', 'popUp')
+                popUpMessage.style.paddingLeft = "10px";
+                popUpMessage.innerHTML = "Thank you! We will get back to your inquiry as soon as possible.";
+
+                popup.appendChild(popUpMessage);
+                
+            } else {
+                lSendError()
+            };
+            };
+
+        function sSendError() {
+            var popup = document.getElementById("sSubmit")
+                
+            var popUpMessage = document.createElement('div');
+            popUpMessage.setAttribute('id', 'popUp')
+            popUpMessage.style.paddingLeft = "10px";
+            popUpMessage.innerHTML = "Please fill out all * areas to proceed";
+
+            popup.appendChild(popUpMessage);
+        };
+
+        function lSendError() {
+            var popup = document.getElementById("lSubmit")
+                
+            var popUpMessage = document.createElement('div');
+            popUpMessage.setAttribute('id', 'popUp')
+            popUpMessage.style.paddingLeft = "10px";
+            popUpMessage.innerHTML = "Please fill out all * areas to proceed";
+
+            popup.appendChild(popUpMessage);
+        };
+    </script>
+</body> 
